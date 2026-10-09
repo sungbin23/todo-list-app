@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-container">
+            <h1>My Tasks</h1>
+            <button id="themeToggle" title="다크 모드 전환">🌙</button>
+        </div>
+        
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <div>
+                    <div class="stat-label">전체 진행률</div>
+                    <div class="stat-value" id="overallText">0/0 완료 (0%)</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="stat-label">오늘 추가</div>
+                    <div class="stat-value" id="todayCount">0개</div>
+                </div>
+            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="overallProgress"></div></div>
+            
+            <div class="category-stats">
+                <div class="cat-stat work-stat"><div class="cat-stat-header"><span>업무</span><span id="workText">0/0</span></div><div class="mini-progress-bg"><div class="mini-progress-fill work-fill" id="workProgress"></div></div></div>
+                <div class="cat-stat personal-stat"><div class="cat-stat-header"><span>개인</span><span id="personalText">0/0</span></div><div class="mini-progress-bg"><div class="mini-progress-fill personal-fill" id="personalProgress"></div></div></div>
+                <div class="cat-stat study-stat"><div class="cat-stat-header"><span>공부</span><span id="studyText">0/0</span></div><div class="mini-progress-bg"><div class="mini-progress-fill study-fill" id="studyProgress"></div></div></div>
+            </div>
+            <!-- 오늘의 격언 추가 -->
+            <div id="quoteContainer" class="quote-container"></div>
+        </div>
+
+        <!-- 정렬 및 컨트롤 컨테이너 -->
+        <div class="controls-container">
+            <input type="text" id="searchInput" placeholder="할 일 검색... 🔍">
+            <select id="sortSelect">
+                <option value="latest">최신순</option>
+                <option value="oldest">오래된순</option>
+                <option value="category">카테고리순</option>
+                <option value="completed">완료순</option>
+            </select>
+        </div>
+
+        <!-- 데이터 관리 버튼들 -->
+        <div class="data-controls">
+            <button id="exportBtn" class="data-btn">⬇ 내보내기</button>
+            <button id="importBtn" class="data-btn">⬆ 가져오기</button>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
+            <button id="clearCompletedBtn" class="data-btn danger">완료 항목 삭제</button>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">전체</button>
+            <button class="filter-btn" data-filter="work">업무</button>
+            <button class="filter-btn" data-filter="personal">개인</button>
+            <button class="filter-btn" data-filter="study">공부</button>
+        </div>
+
+        <div class="input-container">
+            <select id="categorySelect">
+                <option value="work">업무</option>
+                <option value="personal">개인</option>
+                <option value="study">공부</option>
+            </select>
+            <input type="text" id="taskInput" placeholder="새로운 할 일을 입력하세요... (Alt+N)">
+            <button id="addBtn">추가</button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

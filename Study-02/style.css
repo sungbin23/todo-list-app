@@ -1,0 +1,70 @@
+* { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #6a5acd; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; transition: background-color 0.3s; padding: 20px; }
+.app-container { background-color: white; width: 100%; max-width: 600px; border-radius: 15px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: background-color 0.3s, color 0.3s; }
+
+.header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+h1 { color: #333; font-weight: 300; font-size: 2.2rem; margin: 0; }
+#themeToggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; transition: transform 0.3s; }
+#themeToggle:hover { transform: scale(1.1); }
+
+.dashboard { background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #eee; transition: background-color 0.3s, border-color 0.3s; }
+.dashboard-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.stat-label { font-size: 0.85rem; color: #666; margin-bottom: 5px; }
+.stat-value { font-size: 1.2rem; font-weight: bold; color: #333; }
+.progress-bar-bg { height: 8px; background: #e0e0e0; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: #6a5acd; width: 0%; transition: width 0.5s ease; border-radius: 4px; }
+.category-stats { display: flex; gap: 15px; margin-bottom: 15px; }
+.cat-stat { flex: 1; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: background-color 0.3s; }
+.cat-stat-header { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px; color: #555; font-weight: bold; }
+.mini-progress-bg { height: 4px; background: #eee; border-radius: 2px; overflow: hidden; }
+.mini-progress-fill { height: 100%; width: 0%; transition: width 0.5s ease; border-radius: 2px; }
+
+.work-fill { background: #4A90E2; } .personal-fill { background: #27AE60; } .study-fill { background: #8E44AD; }
+.work-stat { border-left: 3px solid #4A90E2; } .personal-stat { border-left: 3px solid #27AE60; } .study-stat { border-left: 3px solid #8E44AD; }
+
+.quote-container { text-align: center; font-size: 0.9rem; color: #888; font-style: italic; padding-top: 10px; border-top: 1px dashed #ddd; margin-top: 15px; }
+
+.controls-container { display: flex; gap: 10px; margin-bottom: 15px; }
+#searchInput { flex-grow: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 8px; outline: none; }
+#sortSelect { padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; background: white; cursor: pointer; }
+
+.data-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.data-btn { padding: 8px 12px; background-color: #f1f1f1; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; font-size: 0.85rem; color: #555; font-weight: bold; transition: background 0.2s; }
+.data-btn:hover { background-color: #e2e2e2; }
+.data-btn.danger { background-color: #ff6b6b; color: white; border: none; }
+.data-btn.danger:hover { background-color: #ff4c4c; }
+
+.filter-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.filter-btn { background-color: transparent; border: 1px solid #ddd; padding: 8px 18px; border-radius: 20px; cursor: pointer; color: #666; transition: all 0.3s; font-weight: bold; }
+.filter-btn.active { background-color: #6a5acd; color: white; border-color: #6a5acd; }
+
+.input-container { display: flex; gap: 10px; margin-bottom: 30px; }
+#categorySelect { padding: 0 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; background: white; }
+#taskInput { flex-grow: 1; padding: 15px; border: 1px solid #ddd; border-radius: 8px; outline: none; }
+#addBtn { padding: 0 25px; background-color: #6a5acd; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+
+ul { list-style: none; padding: 0; margin: 0; }
+li { display: flex; align-items: center; padding: 15px; background-color: #f9f9f9; margin-bottom: 10px; border-radius: 8px; transition: background-color 0.3s, opacity 0.2s; cursor: grab; }
+li:active { cursor: grabbing; }
+li.dragging { opacity: 0.5; border: 2px dashed #6a5acd; }
+li input[type="checkbox"] { margin-right: 15px; width: 18px; height: 18px; cursor: pointer; }
+.task-content { flex-grow: 1; display: flex; align-items: center; gap: 10px; pointer-events: none; }
+.task-text { color: #333; font-size: 1rem; pointer-events: auto; cursor: text; }
+li.completed .task-text { text-decoration: line-through; color: #aaa; }
+.category-tag { font-size: 0.75rem; padding: 4px 10px; border-radius: 12px; color: white; font-weight: bold; }
+.tag-work { background-color: #4A90E2; } .tag-personal { background-color: #27AE60; } .tag-study { background-color: #8E44AD; }
+.time-text { font-size: 0.8rem; color: #999; margin-right: 15px; }
+.delete-btn { background-color: #ff6b6b; color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; font-weight: bold; font-size: 0.8rem; pointer-events: auto; }
+.empty-message { justify-content: center; color: #999; font-style: italic; background-color: transparent !important; cursor: default; }
+
+/* 다크 모드 스타일 */
+body.dark-mode { background-color: #1A1A1A; }
+body.dark-mode .app-container { background-color: #2D2D2D; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+body.dark-mode h1, body.dark-mode .stat-value, body.dark-mode .task-text { color: #E0E0E0; }
+body.dark-mode .dashboard { background-color: #333; border-color: #444; }
+body.dark-mode .cat-stat { background-color: #3D3D3D; }
+body.dark-mode .cat-stat-header, body.dark-mode .stat-label { color: #aaa; }
+body.dark-mode li { background-color: #3D3D3D; }
+body.dark-mode input, body.dark-mode select { background-color: #444; color: #E0E0E0; border-color: #555; }
+body.dark-mode .filter-btn:not(.active), body.dark-mode .data-btn:not(.danger) { color: #aaa; border-color: #555; background-color: transparent; }
+body.dark-mode .quote-container { border-color: #555; color: #999; }
